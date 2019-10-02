@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Welcome!</title>
-  <link rel="stylesheet" href="../static/css/sign-in-style.css">
-</head>
-<body>
 {% extends "base.html" %}
+
 {% block content %}
 <!-- partial:index.partial.html -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
@@ -21,10 +14,8 @@
     <label for='agree'></label>Accept rules and conditions
   </div>
   <input style="margin-top:30px" type='submit' value='Register'>
-  <a class='forgot' href='#'>Already have an account?</a>
+  <a class='forgot' href="{{ url_for('sign_in') }}">Already have an account?</a>
 </div>
 <!-- partial -->
   <script  src="../static/js/sign-in-script.js"></script>
 {% endblock %}
-</body>
-</html>
