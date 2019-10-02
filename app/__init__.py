@@ -1,18 +1,14 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_migrate import Migrate
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+login = LoginManager(app)
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 from app import errors
-
-
-@app.route('/', methods=['POST', 'GET'])
-def hello():
-    if request.method == 'POST':
-        name = 'Stranger'
-    elif request.method == 'GET':
-        name = request.args.get('name')
-    return render_template('index.html', name=name)
+from app import routes

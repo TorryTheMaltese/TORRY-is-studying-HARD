@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 <center>
-    <h1>Hello, everyPAWdy!</h1>
-    <table>
-        <tr><td>What is your name?</td></tr>
-        <form method="get">
-        <tr>
-            <td><input type="text" name="name" /></td>
-            <td><input type="submit" /></td>
-        </tr>
-        </form>
-    </table>
-    <br>
-    {% if name %}
-    <h3 style="">Welcome, {{ name|capitalize }}!</h3>
-    {% else %}
-    {% endif %}
+    <h1>Hi there!</h1>
 </center>
-</body>
-</html>
+{% endblock %}
