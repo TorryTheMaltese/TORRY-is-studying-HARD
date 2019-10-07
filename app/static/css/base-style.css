@@ -153,6 +153,7 @@ input[type="submit"]:hover {
   text-indent: 25px;
   line-height: 15px;
   font-family: "Open Sans", sans-serif;
+  color: #c0c0c0;
 }
 
 ::-webkit-input-placeholder {

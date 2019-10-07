@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- partial:index.partial.html -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+
+<form method="post">
 <div class='login'>
   <h2>Welcome</h2>
-  <input name='username' placeholder='Username' type='text'>
-  <input id='pw' name='password' placeholder='Password' type='password'>
-  <input name='email' placeholder='E-Mail Address' type='text'>
+  <input id='user_email' name='user_email' placeholder='E-Mail Address' type='text'>
+  <input id='user_pw' name='user_password' placeholder='Password' type='password'>
+  <input id='user_repeat_pw' name='user_repeat_password' placeholder='Password' type='password'>
+  <input id='user_name' name='user_name' placeholder='Username' type='text'>
   <div class='agree'>
-    <input id='agree' name='agree' type='checkbox'>
-    <label for='agree'></label>Accept rules and conditions
+    <input id='user_agree' name='user_agree' type='checkbox'>
+    <label for='user_agree'></label>Accept rules and conditions
   </div>
   <input style="margin-top:30px" type='submit' value='Register'>
   <a class='forgot' href="{{ url_for('sign_in') }}">Already have an account?</a>
 </div>
-<!-- partial -->
-  <script  src="../static/js/sign-in-script.js"></script>
+</form>
+
 {% endblock %}
