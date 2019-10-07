@@ -1,16 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="../static/css/base-style.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
 
 <form method="post">
 <div class='login'>
   <h2>Welcome</h2>
+
   <input id='user_email' name='user_email' placeholder='E-Mail Address' type='text'>
+    {% for error in form.user_email.errors %}
+    <span id="user_email_help" class="text-danger">[{{ error }}]</span>
+    {% endfor %}
+
   <input id='user_pw' name='user_password' placeholder='Password' type='password'>
-  <input id='user_repeat_pw' name='user_repeat_password' placeholder='Password' type='password'>
+
+  <input id='user_repeat_pw' name='user_repeat_password' placeholder='Password Check' type='password'>
+    {% for error in form.user_repeat_password.errors %}
+    <span id="user_id_help" class="text-danger">[{{ error }}]</span>
+    {% endfor %}
+
   <input id='user_name' name='user_name' placeholder='Username' type='text'>
+
   <div class='agree'>
     <input id='user_agree' name='user_agree' type='checkbox'>
     <label for='user_agree'></label>Accept rules and conditions

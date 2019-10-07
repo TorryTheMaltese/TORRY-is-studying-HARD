@@ -13,14 +13,14 @@ def load_user(id):
 
 class User(db.Model, UserMixin):
     __table_name__ = "tbl_user"
-    __table_args__ = {'mysql_collate' : 'utf8_general_ci'}
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)
     user_email = db.Column(db.String(120), index=True, unique=True)
     user_pw = db.Column(db.String(94))
     user_name = db.Column(db.String(64))
     user_registration_date = db.Column(db.DATETIME, default=func.now())
-    user_last_sign_in = db.Column(db.Datetime, default=datetime.utcnow())
+    user_last_sign_in = db.Column(db.DATETIME, default=datetime.utcnow())
 
     def __init__(self, **kwargs):
         self.user_id = kwargs.get('id')

@@ -1,2 +1,3 @@
 class Config:
-    SQLALCHCEMY_DATABASE_URI = 'pymysql+mysql://root:root@localhost/torry'
+    SECRET_KEY = 'torry'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost/torry'
