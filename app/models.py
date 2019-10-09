@@ -7,8 +7,8 @@ from hashlib import md5
 
 
 @login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_user(user_name):
+    return User.query.get(str(user_name))
 
 
 class User(db.Model, UserMixin):

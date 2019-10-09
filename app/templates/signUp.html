@@ -8,7 +8,7 @@
 <form method="post">
 {{ form.hidden_tag() }}
 <div class='login'>
-  <h2>Welcome</h2>
+  <h2 class="content-title">Welcome</h2>
 
   <input id='user_email' name='user_email' placeholder='E-Mail Address' type='text'>
     {% for error in form.user_email.errors %}

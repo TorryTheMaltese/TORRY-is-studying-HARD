@@ -11,15 +11,11 @@
 <!-- partial:index.partial.html -->
 <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
 <nav>
-    <h1>Hello, everyPAWdy!</h1>
+    <h1 class="title">Hello, everyPAWdy!</h1>
     <div>
     <a href="{{ url_for('index') }}" class="btn">Home</a>
         {% if current_user.is_anonymous %}
     <a href="{{ url_for('sign_in') }}" class="btn">Sign In</a>
-        {% if '{{ request.path }}' == '/signIn' %}
-            {{ request.path }}
-            <a href="{{ url_for('sign_up') }}" class="btn">Sign Up</a>
-        {% endif %}
         {% else %}
     <a href="{{ url_for('user') }}" class="btn">My Page</a>
     <a href="{{ url_for('sign_out') }}" class="btn">Sign Out</a>
@@ -27,7 +23,9 @@
     </div>
 </nav>
 <br>
+<div class="background">
 {% block content %} {% endblock %}
+</div>
 <!-- partial -->
 
 </body>
