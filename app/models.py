@@ -12,7 +12,7 @@ def load_user(id):
 
 
 class User(db.Model, UserMixin):
-    __table_name__ = "tbl_user"
+    __tablename__ = "tbl_user"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)

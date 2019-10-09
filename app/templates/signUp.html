@@ -6,6 +6,7 @@
 <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
 
 <form method="post">
+{{ form.hidden_tag() }}
 <div class='login'>
   <h2>Welcome</h2>
 
@@ -25,9 +26,8 @@
 
   <div class='agree'>
     <input id='user_agree' name='user_agree' type='checkbox'>
-    <label for='user_agree'></label>Accept rules and conditions
   </div>
-  <input style="margin-top:30px" type='submit' value='Register'>
+  <input type='submit' value='Register'>
   <a class='forgot' href="{{ url_for('sign_in') }}">Already have an account?</a>
 </div>
 </form>

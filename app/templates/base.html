@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>MY Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">  <title>MY Page</title>
   <link rel="stylesheet" href="../static/css/base-style.css">
 </head>
 <body>
@@ -14,8 +16,12 @@
     <a href="{{ url_for('index') }}" class="btn">Home</a>
         {% if current_user.is_anonymous %}
     <a href="{{ url_for('sign_in') }}" class="btn">Sign In</a>
+        {% if '{{ request.path }}' == '/signIn' %}
+            {{ request.path }}
+            <a href="{{ url_for('sign_up') }}" class="btn">Sign Up</a>
+        {% endif %}
         {% else %}
-    <a href="{{ url_for('user', user_id=current_user.user_id) }}" class="btn">My Page</a>
+    <a href="{{ url_for('user') }}" class="btn">My Page</a>
     <a href="{{ url_for('sign_out') }}" class="btn">Sign Out</a>
         {% endif %}
     </div>
