@@ -20,10 +20,10 @@ class User(db.Model, UserMixin):
     user_pw = db.Column(db.String(94))
     user_name = db.Column(db.String(64))
     user_registration_date = db.Column(db.DATETIME, default=func.now())
-    user_last_sign_in = db.Column(db.DATETIME, default=datetime.utcnow())
+    user_last_sign_in = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(self, **kwargs):
-        self.user_id = kwargs.get('id')
+        self.id = kwargs.get('id')
         self.user_email = kwargs.get('user_email')
         self.user_pw = generate_password_hash(kwargs.get('user_pw'))
         self.user_name = kwargs.get('user_name')
@@ -43,3 +43,24 @@ class User(db.Model, UserMixin):
     def avatar(self, size):
         digest = md5(self.user_email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{0}?d=identicon&s={1}'.format(digest, size)
+
+
+class Board(db.Model):
+    __tablename__ = "tbl_board"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = db.Column(db.Integer, primary_key=True)
+    board_title = db.Column(db.String(128))
+    board_image = db.Column(db.String(100), default='default.jpg')
+    board_written_date = db.Column(db.DATETIME, default=func.now())
+
+    def __init__(self, **kwargs):
+        self.id = kwargs.get('id')
+        self.board_title = kwargs.get('board_title')
+        self.board_image = kwargs.get('board_image')
+
+    def __repr__(self):
+        return '<BOARD {}>'.format(self.user_email)
+
+    def as_dict(self):
+        return {x.name: getattr(self, x.name) for x in self.__table__.columns}

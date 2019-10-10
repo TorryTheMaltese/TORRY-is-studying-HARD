@@ -1,6 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-<center>
-    <h1 class="title">Hi there!</h1>
-</center>
+
+<h1 class="title">Hi there!</h1>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'>
+<link rel="stylesheet" href="../static/css/upload-style.css">
+
+<main role="main">
+  <button class="popup-trigger upload-btn" id="popup-trigger"><span>Upload Now<i class="fa fa-plus-square-o"></i></span></button>
+</main>
+<div class="overlay" id="overlay">
+  <div class="overlay-background" id="overlay-background"></div>
+  <div class="overlay-content" id="overlay-content">
+    <div class="fa fa-times fa-lg overlay-close" id="overlay-close"></div>
+    <h1 class="main-heading">Upload Now</h1>
+    <h3 class="blurb">I can't wait to see your image &mdash;</h3><span class="blurb-tagline">Let us show the cuteness.</span>
+    <form class="upload-form" method="post" action="" novalidate="novalidate">
+      <label class="upload-label" for="signup-name">Title</label>
+      <input class="upload-input" id="signup-name" type="text" name="title" autocomplete="off"/>
+      <label class="upload-label" for="signup-email">Upload Image</label>
+      <input class="upload-input" id="signup-email" type="text" name="image" autocomplete="off"/>
+      <button class="upload-btn btn-outline submit-btn"><span>upload</span></button>
+    </form>
+  </div>
+</div>
+<!-- partial -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="../static/js/upload-script.js"></script>
+
+
 {% endblock %}

@@ -12,23 +12,21 @@
         <div class="text-movie-cont">
           <div class="mr-grid">
             <div class="col1">
-              <h1 class="user-name">Interstellar</h1>
+              <h1 class="user-name">{{ user.user_name|capitalize }}</h1>
               <ul class="movie-gen">
-                <li>PG-13  /</li>
-                <li>2h 49min  /</li>
-                <li>Adventure, Drama, Sci-Fi,</li>
+                {% if user.user_last_sign_in %}
+                <li>Last seen on  </li>
+                <li>{{ user.user_last_sign_in }}</li>
+                {% endif %}
               </ul>
             </div>
           </div>
           <div class="mr-grid summary-row">
             <div class="col2">
-              <h5 class="user-info">SUMMARY</h5>
+              <h5 class="user-info">E-Mail</h5>
             </div>
-          </div>
-          <div class="mr-grid">
             <div class="col1">
-              <p class="user-description">A group of elderly people are giving interviews about having lived in a climate of crop blight and constant dust reminiscent of The Great
-              Depression of the 1930's. The first one seen is an elderly woman stating her father was a farmer, but did not start out that way. </p>
+              <div class="user-description"> {{ user.user_email }} </div>
             </div>
           </div>
         </div>

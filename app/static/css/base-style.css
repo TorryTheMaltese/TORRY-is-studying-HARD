@@ -8,12 +8,16 @@
 
 body{
   background:#1b1b2b;
+  color: #c0c0c0;
+  overflow:auto;
+}
+
+nav{
   text-align:center;
   font-family: 'Oswald', sans-serif;
   width:100%;
   height:100%;
   padding:15px;
-  /*position:fixed;*/
 }
 
 .title{
@@ -21,7 +25,7 @@ body{
   font-weight:100;
 }
 
-.btn{
+.nav_btn{
   color:#999;
   background:rgba(0, 0, 0, 0.5);
   padding:10px 20px;
@@ -31,26 +35,12 @@ body{
   text-transform:uppercase;
 }
 
-.btn:hover{
+.nav_btn:hover{
   border:none;
   background:rgba(0, 0, 0, 0.4);
   background:#fff;
   padding:20px 20px; #000;
   color:#1b1b1b;
-}
-
-.footer{
-  font-size:8px;
-  color:#fff;
-  clear:both;
-  display:block;
-  letter-spacing:5px;
-  border:1px solid #fff;
-  padding:5px;
-  text-decoration:none;
-  width:210px;
-  margin:auto;
-  margin-top:400px;
 }
 
 .content-title {
@@ -85,21 +75,6 @@ input[type="text"], input[type="password"] {
 }
 input[type=checkbox] {
   display: none;
-  font-family: "Open Sans", sans-serif;
-}
-
-label {
-  display: block;
-  position: absolute;
-  margin-right: 10px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: transparent;
-  content: "";
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  border: 3px solid #435160;
   font-family: "Open Sans", sans-serif;
 }
 

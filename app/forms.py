@@ -35,3 +35,8 @@ class EditUserForm(FlaskForm):
         user = User.query.filter_by(user_email=user_email.data).first()
         if user:
             raise ValidationError('Please enter a different email address!!')
+
+
+class UploadForm(FlaskForm):
+    board_title = StringField('Title', validators=[DataRequired()])
+    board_image = StringField('Image', validators=[DataRequired()])

@@ -1,7 +1,7 @@
 from app import app, login, models
 from flask import render_template, request, redirect, url_for, flash, abort, session
 from flask_login import login_user, login_required, current_user, logout_user
-from app.forms import SignInForm, SignUpForm, EditUserForm
+from app.forms import SignInForm, SignUpForm, EditUserForm, UploadForm
 from datetime import datetime
 import dbHelper
 
@@ -92,6 +92,21 @@ def edit_user():
     form.user_name.data = current_user.user_name
 
     return render_template('edit_user.html', form=form)
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    form = UploadForm(request.form)
+    if form.validate_on_submit():
+        board = models.Board(board_title=form.board_title.data, board_image=form.board_image.data)
+        try:
+            with dbHelper.get_session() as session:
+                session.add(board)
+        except Exception as e:
+            return render_template('index.html', error=str(e))
+        return redirect(url_for('index'))
+    return render_template('index.html', form=form)
 
 
 @app.before_request
