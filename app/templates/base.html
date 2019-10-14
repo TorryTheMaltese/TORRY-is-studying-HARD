@@ -7,7 +7,7 @@
   <meta name="author" content="">  <title>MY Page</title>
   <link rel="stylesheet" href="../static/css/base-style.css">
 </head>
-<body class="nav_body">
+<body>
 <!-- partial:index.partial.html -->
 <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
 <nav>
@@ -22,11 +22,8 @@
         {% endif %}
     </div>
 </nav>
-<br>
-<div class="background">
-{% block content %} {% block upload %} {% endblock %} {% endblock %}
+{% block content %}  {% endblock %}
 
-</div>
 <!-- partial -->
 
 </body>

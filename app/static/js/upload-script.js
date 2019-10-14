@@ -11,6 +11,18 @@
   };
 
   $(document).ready(function() {
+    var fileTarget = $('.file-box .upload-hidden');
+
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            var filename = $(this)[0].files[0].name;
+        }
+        else {
+            var filename = $(this).val().split('/').pop().split('\\').pop();
+        }
+        $(this).siblings('.upload-name').val(filename);
+    });
+
     $(window).resize(function() {
       if ($(window).height() < 560 && $(window).width() > 600) {
         $('#overlay').addClass('short');
@@ -30,7 +42,14 @@
     return $('#overlay-background,#overlay-close').click(function() {
       return $('#overlay').removeClass('open');
     });
+
+
+
   });
+
+
+
+
 
 }).call(this);
 

@@ -9,3 +9,4 @@ start from 1 Oct 2019
 5. Flask-Migrate
 6. Flask-MysqlDB
 7. Flask-WTF
+8. Flask-Uploads

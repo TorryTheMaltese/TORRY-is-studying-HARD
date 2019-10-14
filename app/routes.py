@@ -35,7 +35,6 @@ def sign_in():
             flash('Invalid User ID or Password.')
             return redirect(url_for('sign_in'))
         login_user(user, remember=form.user_remember_me.data)
-        print(session['user_id'])
         return redirect(url_for('index'))
 
     return render_template('signIn.html', form=form)

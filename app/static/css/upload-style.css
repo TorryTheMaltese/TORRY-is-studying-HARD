@@ -1,16 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  color: inherit;
-  box-sizing: inherit;
-}
+
 *:focus {
   outline: none;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  overflow: hidden;
 }
 
 html {
@@ -26,7 +16,7 @@ html {
   display: block;
 }
 
-.animate, .upload-btn, .btn span, .overlay .overlay-content, .overlay .overlay-content .overlay-close, .overlay .overlay-content .upload-form {
+.animate, .upload-btn, .upload-btn span, .overlay .overlay-content, .overlay .overlay-content .overlay-close, .overlay .overlay-content .upload-form {
   transition: all 0.3s;
 }
 
@@ -35,7 +25,6 @@ main {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
   left: 0;
   z-index: 10;
 }
@@ -54,7 +43,6 @@ main {
   border: 0;
   text-align: center;
   cursor: pointer;
-  border-radius: 5px;
 }
 .upload-btn span {
   font-weight: 600;
@@ -67,7 +55,7 @@ main {
   vertical-align: middle;
 }
 .upload-btn:not(.btn-outline) {
-  background-color: #fff;
+  background-color: #000;
 }
 .upload-btn:not(.btn-outline) span {
   color: #666;
@@ -75,9 +63,10 @@ main {
 .upload-btn:not(.btn-outline):hover {
   background-color: #f7f7f7;
 }
-.upload-btn.btn-outline {
+.btn-outline {
   background-color: transparent;
   border: 1px solid #fff;
+  border-radius: 5px;
 }
 .upload-btn.btn-outline span {
   color: #fff;
@@ -90,11 +79,11 @@ main {
 }
 
 .popup-trigger {
-  width: 175px;
+  width: 270px;
   margin: auto;
+  margin-top: 5px;
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.05);
@@ -191,6 +180,47 @@ main {
 }
 .overlay.short .overlay-content {
   margin: 30px auto;
+}
+
+.file-box label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.file-box input[type="file"] {
+  position: absolute;
+  width: 100px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.file-box .upload-name {
+  display: inline-block;
+  padding: .5em 75em;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 @media (max-width: 600px) {
