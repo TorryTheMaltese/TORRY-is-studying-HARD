@@ -30,7 +30,7 @@
 .movie-img {
   width: 100%;
   height: 280px;
-  background-image: url("../img/default.jpg");
+  /* background-image: url("../img/default.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

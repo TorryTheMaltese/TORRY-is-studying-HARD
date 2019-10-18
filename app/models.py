@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     user_name = db.Column(db.String(64))
     user_registration_date = db.Column(db.DATETIME, default=func.now())
     user_last_sign_in = db.Column(db.DateTime, default=datetime.utcnow())
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
@@ -29,7 +30,8 @@ class User(db.Model, UserMixin):
         self.user_name = kwargs.get('user_name')
 
     def __repr__(self):
-        return '<USER {}>'.format(self.user_email)
+        # return '<USER {}>'.format(self.user_email)
+        return f"<USER('{self.id}', '{self.user_name}')>"
 
     def as_dict(self):
         return {x.name: getattr(self, x.name) for x in self.__table__.columns}
@@ -45,22 +47,22 @@ class User(db.Model, UserMixin):
         return 'https://www.gravatar.com/avatar/{0}?d=identicon&s={1}'.format(digest, size)
 
 
-class Board(db.Model):
-    __tablename__ = "tbl_board"
+class Post(db.Model):
+    __tablename__ = "tbl_post"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = db.Column(db.Integer, primary_key=True)
-    board_title = db.Column(db.String(128))
-    board_image = db.Column(db.String(100), default='default.jpg')
-    board_written_date = db.Column(db.DATETIME, default=func.now())
+    post_title = db.Column(db.String(128))
+    post_written_date = db.Column(db.DATETIME, default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('tbl_user.id'))
 
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
-        self.board_title = kwargs.get('board_title')
-        self.board_image = kwargs.get('board_image')
+        self.post_title = kwargs.get('post_title')
+        self.post_image = kwargs.get('post_image')
 
     def __repr__(self):
-        return '<BOARD {}>'.format(self.user_email)
+        return '<POST {}>'.format(self.post_title)
 
     def as_dict(self):
         return {x.name: getattr(self, x.name) for x in self.__table__.columns}

@@ -1,8 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Email, ValidationError, EqualTo
-from app.models import User
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from app.models import User, Post
 from flask_login import current_user
+
+ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
 
 
 class SignInForm(FlaskForm):
@@ -38,5 +41,7 @@ class EditUserForm(FlaskForm):
 
 
 class UploadForm(FlaskForm):
-    board_title = StringField('Title', validators=[DataRequired()])
-    board_image = StringField('Image', validators=[DataRequired()])
+    post_title = StringField('Title', validators=[DataRequired()])
+    post_image = FileField('Image', validators=[FileRequired()])
+    post_image_name = StringField('Image Name', validators=[DataRequired])
+    post_image_path = StringField('Image Path', validators=[DataRequired])

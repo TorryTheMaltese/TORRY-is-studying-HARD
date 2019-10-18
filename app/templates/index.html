@@ -16,15 +16,15 @@
     <div class="fa fa-times fa-lg overlay-close" id="overlay-close"></div>
     <h1 class="main-heading">Upload Now</h1>
     <h3 class="blurb">I can't wait to see your animal friend !</h3><span class="blurb-tagline">Let us show the cuteness.</span>
-    <form class="upload-form" method="post" novalidate="novalidate">
-      <label class="upload-label" for="upload-title">Title</label>
-      <input class="upload-input" id="upload-title" type="text" name="upload-title" autocomplete="off"/>
-      <label class="upload-label" for="upload-image">Upload Image</label>
+    <form action="{{ url_for('upload') }}" class="upload-form" method="post" enctype="multipart/form-data">
+      <label class="upload-label" for="post_title">Title</label>
+      <input class="upload-input" id="post_title" type="text" name="post_title" autocomplete="off"/>
+      <label class="upload-label" for="post_image">Upload Image</label>
       <div class="file-box">
-        <input type="text" class="upload-name" value="Choose Your File" disabled="disabled">
+        <input type="text" class="upload-input upload-name"  value="Choose Your File" disabled="disabled">
 
-        <input class="upload-input upload-hidden" id="upload-image" type="file" name="upload-image" autocomplete="off"/>
-        <label for="upload-image">Browse</label>
+        <input class="upload-input upload-hidden" id="post_image" type="file" name="post_image" autocomplete="off"/>
+        <label for="post_image">Browse</label>
       </div>
       <button class="upload-btn btn-outline submit-btn" type="submit"><span>upload</span></button>
     </form>

@@ -3,7 +3,9 @@ from flask import render_template, request, redirect, url_for, flash, abort, ses
 from flask_login import login_user, login_required, current_user, logout_user
 from app.forms import SignInForm, SignUpForm, EditUserForm, UploadForm
 from datetime import datetime
+from werkzeug.utils import secure_filename
 import dbHelper
+import os
 
 
 @login.unauthorized_handler
@@ -11,9 +13,28 @@ def unauthorized_handler():
     return 'Unauthorized'
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    form = UploadForm()
+    if request.method == 'POST':
+        post_image = form.post_image.data
+        # post_image.save(os.path.join(app.config['UPLOAD_FOLDER']), secure_filename(post_image.filename))
+        post_image.save(secure_filename(post_image.filename))
+        post = models.Post(post_title=form.post_title.data)
+        post.author = current_user
+        try:
+            with dbHelper.get_session() as session:
+                session.add(post)
+        except Exception as e:
+            return render_template('index.html', error=str(e))
+        return redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 
 @app.route('/signOut')
@@ -94,18 +115,7 @@ def edit_user():
 
 
 @app.route('/upload', methods=['GET', 'POST'])
-@login_required
-def upload():
-    form = UploadForm(request.form)
-    if form.validate_on_submit():
-        board = models.Board(board_title=form.board_title.data, board_image=form.board_image.data)
-        try:
-            with dbHelper.get_session() as session:
-                session.add(board)
-        except Exception as e:
-            return render_template('index.html', error=str(e))
-        return redirect(url_for('index'))
-    return render_template('index.html', form=form)
+
 
 
 @app.before_request
