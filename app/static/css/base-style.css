@@ -9,10 +9,10 @@
 body{
   background:#1b1b2b;
   color: #c0c0c0;
-  overflow:auto;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
   box-sizing: inherit;
 }
@@ -66,7 +66,7 @@ nav{
   font-family: "Open Sans", sans-serif;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
   width: 350px;
   padding: 20px 0px;
   background: transparent;
@@ -125,6 +125,32 @@ input[type="submit"]:hover {
   font-family: "Open Sans", sans-serif;
 }
 
+.edit-btn {
+  background:rgba(0, 0, 0, 0.5);
+  border: 0;
+  width: 80px;
+  padding:20px 20px;
+  border-radius: 3px;
+  color: #c0c0c0;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none !important;
+  display: block;
+  text-align: center;
+  margin: 30px 5px;
+  float: left;
+}
+.edit-btn:hover {
+  background: #fff;
+  color:#1b1b1b;
+  font-size: 12px;
+  width: 80px;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none !important;
+}
+
 .agree {
   padding: 30px 0px;
   font-size: 12px;
@@ -143,4 +169,160 @@ input[type="submit"]:hover {
 .text-danger {
   color: #dc3545 !important;
   font-size: 10px;
+}
+
+main {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+}
+
+.gallery {
+  margin-top: 80px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+.gallery figure {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  margin: 10px;
+  min-width: 310px;
+  max-width: 310px;
+  height: 100%;
+  width: 100%;
+  min-height: 175px;
+  max-height: 175px;
+  color: #ffffff;
+  text-align: left;
+  background-color: #000000;
+  font-size: 16px;
+  float: left;
+  display: block;
+  overflow: hidden
+}
+.gallery figure * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+.gallery figure img {
+  position: relative;
+  width: 120%;
+  height: 120%;
+  vertical-align: top;
+  object-fit: fill;
+  transform: translate(-10%,-10%);
+}
+.gallery figure figcaption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  padding: 20px 30px;
+  text-overflow: ellipsis;
+}
+.gallery figure figcaption:before,
+.gallery figure figcaption:after {
+  width: 1px;
+  height: 0;
+}
+.gallery figure figcaption:before {
+  right: 0;
+  top: 0;
+}
+.gallery figure figcaption:after {
+  left: 0;
+  bottom: 0;
+}
+.gallery figure h3,
+.gallery figure p {
+  line-height: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gallery figure h3 {
+  margin: 0 0 5px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.gallery figure p {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+.gallery figure a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+.gallery figure :before,
+.gallery figure :after,
+.gallery figure figcaption:before,
+.gallery figure igcaption:after {
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+  z-index: 1;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  opacity: 0.8;
+}
+.gallery figure:before,
+.gallery figure:after {
+  height: 1px;
+  width: 0%;
+}
+.gallery figure:before {
+  top: 0;
+  left: 0;
+}
+.gallery figure:after {
+  bottom: 0;
+  right: 0;
+}
+.gallery figure:hover img,
+.gallery figure.hover img {
+  opacity: 0.4;
+}
+.gallery figure:hover figcaption,
+.gallery figure.hover figcaption {
+  opacity: 1;
+}
+.gallery figure:hover figcaption:before,
+.gallery figure.hover figcaption:before,
+.gallery figure:hover figcaption:after,
+.gallery figure.hover figcaption:after {
+  height: 100%;
+}
+.gallery figure:hover:before,
+.gallery figure.hover:before,
+.gallery figure:hover:after,
+.gallery figure.hover:after {
+  width: 100%;
+}
+.gallery figure:hover:before,
+.gallery figure.hover:before,
+.gallery figure:hover:after,
+.gallery figure.hover:after,
+.gallery figure:hover figcaption:before,
+.gallery figure.hover figcaption:before,
+.gallery figure:hover figcaption:after,
+.gallery figure.hover figcaption:after {
+  opacity: 0.1;
 }

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="../static/css/user-style.css">
+
+<div class="container">
+  <div class="cellphone-container">    
+        <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="text-movie-cont">
+
+          <div class="mr-grid">
+
+            <div class="col1">
+              <h1 class="user-name">Name</h1>
+              <input class="user-name" type="text" value="{{ form.user_name.data }}" id="user_name" name="user_name" />
+            </div>
+
+            <div class="col1">
+              <h1 class="user-name">E-Mail</h1>
+              <input class="user-name" type="email" value="{{ form.user_email.data }}" id="user_email" name="user_email" />
+            </div>
+
+            {% for error in form.user_email.errors %}
+              <span id="user_email_help" class="text-danger">[{{ error }}]</span>
+            {% endfor %}
+
+          </div>
+
+          <button class="edit-btn" type="submit">Modify</button>
+          <a class="edit-btn" href="{{ url_for('edit_password') }}">Edit Password</a>
+          <a class="edit-btn" type="button" href="{{ url_for('user') }}">Cancel</a>
+
+        </div>
+      </form>
+  </div>
+</div>
+
+{% endblock %}

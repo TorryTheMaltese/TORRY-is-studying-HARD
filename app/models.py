@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     user_email = db.Column(db.String(120), index=True, unique=True)
     user_pw = db.Column(db.String(94))
     user_name = db.Column(db.String(64))
-    user_registration_date = db.Column(db.DATETIME, default=func.now())
+    user_registration_date = db.Column(db.DateTime, default=func.now())
     user_last_sign_in = db.Column(db.DateTime, default=datetime.utcnow())
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
@@ -30,7 +30,6 @@ class User(db.Model, UserMixin):
         self.user_name = kwargs.get('user_name')
 
     def __repr__(self):
-        # return '<USER {}>'.format(self.user_email)
         return f"<USER('{self.id}', '{self.user_name}')>"
 
     def as_dict(self):
@@ -53,6 +52,7 @@ class Post(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     post_title = db.Column(db.String(128))
+    post_image = db.Column(db.String(100))
     post_written_date = db.Column(db.DATETIME, default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('tbl_user.id'))
 
@@ -62,7 +62,7 @@ class Post(db.Model):
         self.post_image = kwargs.get('post_image')
 
     def __repr__(self):
-        return '<POST {}>'.format(self.post_title)
+        return f"<POST('{self.id}', '{self.post_title}', '{self.post_image}')>"
 
     def as_dict(self):
         return {x.name: getattr(self, x.name) for x in self.__table__.columns}

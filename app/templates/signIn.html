@@ -11,7 +11,15 @@
 <div class='login'>
   <h2 class="content-title">Hi, there</h2>
   <input name='user_email' placeholder='E-Mail Address' type='text'>
+
   <input id='user_pw' name='user_password' placeholder='Password' type='password'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <span id="sign_in_error" class="text-danger">[{{ message }}]</span>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
   <input style="margin-top:30px" type='submit' value='Login'>
   <a class='forgot' href="{{ url_for('sign_up') }}">Wanna join us?</a>
 </div>

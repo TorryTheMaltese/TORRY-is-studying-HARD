@@ -27,9 +27,8 @@ class SignUpForm(FlaskForm):
 
 
 class EditUserForm(FlaskForm):
-    user_email = StringField('E-Mail')
-    user_password = PasswordField('Password', validators=[DataRequired()])
-    user_name = StringField('Name')
+    user_email = StringField('E-Mail', validators=[DataRequired()])
+    user_name = StringField('Name', validators=[DataRequired()])
 
     def validate_user_email(self, user_email):
         if user_email.data == current_user.user_email:
@@ -40,8 +39,17 @@ class EditUserForm(FlaskForm):
             raise ValidationError('Please enter a different email address!!')
 
 
+class EditPasswordForm(FlaskForm):
+    user_password = PasswordField('Password', validators=[DataRequired()])
+    user_new_password = PasswordField('Password', validators=[DataRequired()])
+    user_new_password_repeat = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('user_new_password')])
+
+    def validate_user_password(self, user_password):
+        if not current_user.check_user_pw(user_password.data):
+            raise ValidationError('Please enter a correct password!!')
+
+
 class UploadForm(FlaskForm):
     post_title = StringField('Title', validators=[DataRequired()])
     post_image = FileField('Image', validators=[FileRequired()])
     post_image_name = StringField('Image Name', validators=[DataRequired])
-    post_image_path = StringField('Image Path', validators=[DataRequired])

@@ -111,6 +111,14 @@
   margin: 0px;
 }
 
+.user-pw {
+  font-size: 26px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #e7e7e7;
+  margin: 0px;
+}
+
 .user-info {
   font-size: 12px;
   font-weight: 400;

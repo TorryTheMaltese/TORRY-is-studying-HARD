@@ -1,7 +1,7 @@
-from app import app, login, models
+from app import app, login, models, db
 from flask import render_template, request, redirect, url_for, flash, abort, session
 from flask_login import login_user, login_required, current_user, logout_user
-from app.forms import SignInForm, SignUpForm, EditUserForm, UploadForm
+from app.forms import SignInForm, SignUpForm, EditUserForm, EditPasswordForm, UploadForm
 from datetime import datetime
 from werkzeug.utils import secure_filename
 import dbHelper
@@ -15,7 +15,8 @@ def unauthorized_handler():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    posts = models.Post.query.all()
+    return render_template('index.html', posts=posts)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -24,9 +25,11 @@ def upload():
     form = UploadForm()
     if request.method == 'POST':
         post_image = form.post_image.data
-        # post_image.save(os.path.join(app.config['UPLOAD_FOLDER']), secure_filename(post_image.filename))
-        post_image.save(secure_filename(post_image.filename))
-        post = models.Post(post_title=form.post_title.data)
+        if not post_image:
+            flash('No Chosen')
+            return redirect(url_for('index'))
+        post_image.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(post_image.filename)))
+        post = models.Post(post_title=form.post_title.data, post_image=secure_filename(post_image.filename))
         post.author = current_user
         try:
             with dbHelper.get_session() as session:
@@ -34,6 +37,15 @@ def upload():
         except Exception as e:
             return render_template('index.html', error=str(e))
         return redirect(url_for('index'))
+    return redirect(url_for('index'))
+
+
+@app.route('/delete', methods=['GET', 'POST'])
+@login_required
+def delete(id):
+    posts = models.Post.query.filter_by(id=id).first()
+    db.session.query(models.Post).filter_by(models.Post.id == posts.id).delete()
+    db.session.commit()
     return redirect(url_for('index'))
 
 
@@ -81,21 +93,16 @@ def sign_up():
 @login_required
 def user():
     user = models.User.query.filter_by(id=session['user_id']).first_or_404()
-    posts = [
-        {'author': user, 'body': 'Text post #1'},
-        {'author': user, 'body': 'Text post #2'}
-    ]
-
+    posts = models.Post.query.filter_by(id=id)
     return render_template('user.html', user=user, posts=posts)
 
 
-@app.route('/edit_user', methods=['GET', 'POST'])
+@app.route('/editUser', methods=['GET', 'POST'])
 @login_required
 def edit_user():
     form = EditUserForm()
     if form.validate_on_submit():
         current_user.user_email = form.user_email.data
-        current_user.user_password = form.user_password.data
         current_user.user_name = form.user_name.data
 
         try:
@@ -106,16 +113,34 @@ def edit_user():
             abort(500)
 
         flash('Your changes have been saved.')
-        return redirect(url_for('user', user_email=current_user.user_email))
+        return redirect(url_for('user'))
 
     form.user_email.data = current_user.user_email or ''
     form.user_name.data = current_user.user_name
 
-    return render_template('edit_user.html', form=form)
+    return render_template('editUser.html', form=form)
 
 
-@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/editPassword', methods=['GET', 'POST'])
+@login_required
+def edit_password():
+    form = EditPasswordForm()
+    if form.validate_on_submit():
+        current_user.set_user_pw(form.user_new_password.data)
 
+        try:
+            with dbHelper.get_session() as session:
+                session.commit()
+
+        except Exception as e:
+            abort(500)
+
+        flash('Your changes have been saved.')
+        return redirect(url_for('user'))
+
+    form.user_password.data = current_user.user_pw or ''
+
+    return render_template('editPassword.html', form=form)
 
 
 @app.before_request

@@ -16,13 +16,19 @@
     {% endfor %}
 
   <input id='user_pw' name='user_password' placeholder='Password' type='password'>
+    {% for error in form.user_password.errors %}
+    <span id="user_pw_help" class="text-danger">[{{ error }}]</span>
+    {% endfor %}
 
   <input id='user_repeat_pw' name='user_repeat_password' placeholder='Password Check' type='password'>
     {% for error in form.user_repeat_password.errors %}
-    <span id="user_id_help" class="text-danger">[{{ error }}]</span>
+    <span id="user_pw_repeat_help" class="text-danger">[{{ error }}]</span>
     {% endfor %}
 
   <input id='user_name' name='user_name' placeholder='Username' type='text'>
+    {% for error in form.user_name.errors %}
+    <span id="user_name_help" class="text-danger">[{{ error }}]</span>
+    {% endfor %}
 
   <div class='agree'>
     <input id='user_agree' name='user_agree' type='checkbox'>
