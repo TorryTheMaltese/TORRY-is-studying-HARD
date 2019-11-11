@@ -40,13 +40,13 @@ def upload():
     return redirect(url_for('index'))
 
 
-@app.route('/delete', methods=['GET', 'POST'])
+@app.route('/delete?<post_id>', methods=['GET', 'POST'])
 @login_required
-def delete(id):
-    posts = models.Post.query.filter_by(id=id).first()
-    db.session.query(models.Post).filter_by(models.Post.id == posts.id).delete()
+def delete(post_id):
+    post = models.Post.query.filter_by(id=post_id).first()
+    db.session.query(models.Post).filter(models.Post.id==post.id).delete()
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('user'))
 
 
 @app.route('/signOut')
@@ -93,7 +93,7 @@ def sign_up():
 @login_required
 def user():
     user = models.User.query.filter_by(id=session['user_id']).first_or_404()
-    posts = models.Post.query.filter_by(id=id)
+    posts = models.Post.query.filter_by(user_id=session['user_id'])
     return render_template('user.html', user=user, posts=posts)
 
 

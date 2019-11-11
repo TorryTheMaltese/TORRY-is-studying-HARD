@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-<link rel="stylesheet" href="../static/css/image-style.css">
-
-{% if not current_user.is_anonymous %}
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300'>
 
 <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'>
 <link rel="stylesheet" href="../static/css/upload-style.css">
 
+<link rel="stylesheet" href="../static/css/image-style.css">
+
 <main role="main">
+  {% if not current_user.is_anonymous %}
   <button class="popup-trigger upload-btn" id="popup-trigger"><span>Upload Now<i class="fa fa-plus-square-o"></i></span></button>
 
   <div class="overlay" id="overlay">
@@ -42,30 +41,25 @@
     </div>
   </div>
 
-{% else %}
-{% endif %}
-
-
-<div class="gallery">
-  {% for post in posts %}
-  {% if loop.index%2==1 %}
-  <figure>
   {% else %}
-  <figure>
   {% endif %}
-    <img src="../static/upload_folder/{{ post.post_image }}"/>
-    <figcaption>
-      <h3>{{ post.post_title }}</h3>
-      <small><p>{{ post.author.user_name }}</p>
-      <p>{{ post.post_written_date }}</p></small>
-    </figcaption>
-    <a href="#"></a>
-  </figure></figure>
-  {% endfor %}
-</div>
-</main>
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
+
+  <div class="gallery">
+    {% for post in posts %}
+    <figure>
+      <img src="../static/upload_folder/{{ post.post_image }}"/>
+      <figcaption>
+        <h3>{{ post.post_title }}</h3>
+        <p><small>{{ post.author.user_name }}</small></p>
+        <p><small>{{ post.post_written_date }}</small></p>
+      </figcaption>
+      <a href="#"></a>
+    </figure>
+    {% endfor %}
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none;">
   <symbol id="close" viewBox="0 0 18 18">
     <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M9,0.493C4.302,0.493,0.493,4.302,0.493,9S4.302,17.507,9,17.507
 			S17.507,13.698,17.507,9S13.698,0.493,9,0.493z M12.491,11.491c0.292,0.296,0.292,0.773,0,1.068c-0.293,0.295-0.767,0.295-1.059,0
@@ -73,15 +67,14 @@
 			c-0.292-0.295-0.292-0.773,0-1.068c0.293-0.295,0.766-0.295,1.059,0l2.504,2.528l2.505-2.528c0.292-0.295,0.767-0.295,1.059,0
 			s0.292,0.773,0,1.068l-2.505,2.528L12.491,11.491z"/>
   </symbol>
-</svg>
+  </svg>
+</main>
+
 
 <!-- partial -->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script  src="../static/js/upload-script.js"></script>
 
 <script  src="../static/js/image-script.js"></script>
-
-
-
 
 {% endblock %}

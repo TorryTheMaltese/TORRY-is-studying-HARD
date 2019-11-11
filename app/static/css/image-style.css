@@ -57,8 +57,15 @@ img {
 }
 .popup figure {
   position: absolute;
-  top: 45%;
-  left: 35%;
+  max-width: 70%;
+  max-height: 70%;
+  /* top: 0; */
+  bottom: 0;
+  /* left: 0; */
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* overflow: auto; */
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -webkit-transform-origin: 0 0;
@@ -79,7 +86,7 @@ img {
 .popup figure:hover figcaption {
   position: absolute;
   bottom: 50px;
-  display: none;
+  display: block;
   z-index: 2;
   width: 100%;
   padding: 100px 20px 20px 20px;
