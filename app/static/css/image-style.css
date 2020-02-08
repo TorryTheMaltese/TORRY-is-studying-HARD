@@ -22,21 +22,7 @@ img {
   -webkit-filter: blur(10px);
           filter: blur(10px);
 }
-/*
-.gallery figure {
-  flex-basis: 33.333%;
-  padding: 10px;
-  overflow: hidden;
-  cursor: pointer;
-}
-.gallery figure img {
-  width: 100%;
-  transition: all .3s ease-in-out;
-}
-.gallery figure figcaption {
-  display: none;
-}
-*/
+
 .popup {
   position: fixed;
   z-index: 2;
@@ -54,18 +40,14 @@ img {
 .popup.pop figure {
   margin-top: 0;
   opacity: 1;
+  width: auto;
+  height: auto;
 }
 .popup figure {
   position: absolute;
-  max-width: 70%;
-  max-height: 70%;
-  /* top: 0; */
-  bottom: 0;
-  /* left: 0; */
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  /* overflow: auto; */
+  top: 40%;
+  left: 50%;
+  margin:-50px 0 0 -50px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -webkit-transform-origin: 0 0;
@@ -78,10 +60,14 @@ img {
 .popup figure img {
   position: relative;
   width: 100%;
+  height: 100%;
   z-index: 2;
+  max-width: 1000px;
+  max-height: 700px;
 }
 .popup figure figcaption {
   display: none;
+  background: rgba(0,0,0,0.3);
 }
 .popup figure:hover figcaption {
   position: absolute;
